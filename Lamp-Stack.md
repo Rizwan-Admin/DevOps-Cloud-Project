@@ -150,7 +150,20 @@ sudo vim /etc/apache2/sites-available/projectlamp.conf
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+![image](https://github.com/user-attachments/assets/d8de9ac6-90bf-4749-a9fc-6d760b58c1eb)
+
+## Enable the new virtual host
+```
+Enable the new virtual host
+```
 ![Uploading image.png…]()
+![Uploading image.png…]()
+
+## Disable apache’s default website.
+
+
+
+
 
 
 
