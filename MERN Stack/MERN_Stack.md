@@ -144,4 +144,28 @@ app.listen(port, () => {
 ```
 ![image](https://github.com/user-attachments/assets/c0a6c879-3cad-4eb3-8964-f199cbf225d2)
 
+Now it is time to start our server to see if it works. Open our terminal in the same directory as our index.js file and type:
+
+```
+node index.js
+```
+
+![image](https://github.com/user-attachments/assets/30b7bb17-dd1b-4883-93e9-a620658797ba)
+
+
+Now we need to open 5000 port in EC2 Security Groups:
+
+![image](https://github.com/user-attachments/assets/0a74108a-e272-4805-93d1-a1354c2834f9)
+
+
+* open browser
+  ```
+  http://public-ip:5000
+  ```
+
+![image](https://github.com/user-attachments/assets/70a3a49b-8994-452c-8a14-581377d0f60a)
+
+
+
+
 
