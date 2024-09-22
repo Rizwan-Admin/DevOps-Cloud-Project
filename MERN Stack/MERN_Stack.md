@@ -209,5 +209,78 @@ module.exports = router;
 
 * Moving forward let create Models directory.
   
+**Models**
 
+**Introduction to Models in JavaScript Applications**
+When building JavaScript-based applications, especially those using MongoDB (a NoSQL database), a model is essential. It defines how your data is structured and helps interact with the database in an organized way.
+
+**Key Concepts:**
+**MongoDB and NoSQL Database**
+
+MongoDB is a NoSQL database that stores data in a flexible, JSON-like format called documents.
+Unlike traditional SQL databases, NoSQL databases like MongoDB don’t rely on fixed tables or schemas, making them more flexible.
+
+**What is a Model?**
+
+In JavaScript-based applications, especially with MongoDB, a model is a key component.
+Models define how data is structured, how it interacts with the database, and help make the app interactive.
+
+**The Role of Schema in Models**
+
+A Schema is essentially the blueprint for your MongoDB documents.
+It defines the fields (properties) and data types that each document will have in the database.
+Think of the schema as a map for how your data is organized.
+
+**Virtual Properties**
+
+In a Schema, some properties may not be stored directly in the database. These are called virtual properties.
+They are useful for data manipulation or computing values on the fly without saving them directly in the database.
+
+* To create a Schema and a model, install mongoose which is a Node.js package that makes working with mongodb easier.
+```
+npm install mongoose
+```
+
+
+![image](https://github.com/user-attachments/assets/cf47b43e-2613-442b-bcf2-06469b8fb621)
+
+* Create a new folder with mkdir models command
+```
+mkdir models
+```
+* Change directory into the newly created 'models' folder with cd models.
+```
+cd models
+```
+
+* Inside the models folder, create a file and name it todo.js
+
+```
+touch todo.js
+```
+
+![image](https://github.com/user-attachments/assets/fbc8415b-919e-4d82-a157-09aa5d230b69)
+
+* copy & past
+
+```
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// create schema for todo
+const TodoSchema = new Schema({
+    action: {
+        type: String,
+        required: [true, 'The todo text field is required']
+    }
+});
+
+// create model for todo
+const Todo = mongoose.model('todo', TodoSchema);
+
+module.exports = Todo;
+```
+
+
+![image](https://github.com/user-attachments/assets/027f6f05-a55a-4c37-9b1e-092b33322c1b)
 
