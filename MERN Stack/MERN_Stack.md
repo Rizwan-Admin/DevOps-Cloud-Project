@@ -166,6 +166,48 @@ Now we need to open 5000 port in EC2 Security Groups:
 ![image](https://github.com/user-attachments/assets/70a3a49b-8994-452c-8a14-581377d0f60a)
 
 
+**Routes**
+There are three actions that our To-Do application needs to be able to do:
+* Create a new task
+* Display list of all tasks
+* Delete a completed task
+Each task will be associated with some particular endpoint and will use different standard HTTP request methods: POST, GET, DELETE.
 
+For each task, we need to create routes
+```
+mkdir routes
+```
+
+```
+cd toutes
+```
+* create a file api.js
+```
+touch api.js
+```
+* open the file
+```
+vim api.js
+```
+
+* copy & paste
+  
+```
+const express = require('express');
+const router = express.Router();
+
+router.get('/todos', (req, res, next) => {});
+
+router.post('/todos', (req, res, next) => {});
+
+router.delete('/todos/:id', (req, res, next) => {});
+
+module.exports = router;
+```
+
+![image](https://github.com/user-attachments/assets/691626d8-79ce-4c77-acf4-f1f2a635070f)
+
+* Moving forward let create Models directory.
+  
 
 
