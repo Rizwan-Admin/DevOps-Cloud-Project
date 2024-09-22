@@ -113,3 +113,35 @@ touch index.js
 ```
 npm install dotenv
 ```
+![image](https://github.com/user-attachments/assets/5f51d881-ff17-44c6-ae51-f114a904b1a7)
+
+* Open the index.js file with vim
+  ```
+  vim index.js
+  ```
+* past the code
+  
+```
+  const express = require('express');
+require('dotenv').config();
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.use((req, res, next) => {
+    res.send('Welcome to Express');
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
+```
+![image](https://github.com/user-attachments/assets/c0a6c879-3cad-4eb3-8964-f199cbf225d2)
+
+
