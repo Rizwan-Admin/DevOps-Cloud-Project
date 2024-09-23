@@ -284,3 +284,143 @@ module.exports = Todo;
 
 ![image](https://github.com/user-attachments/assets/027f6f05-a55a-4c37-9b1e-092b33322c1b)
 
+
+* Now we need to update our routes from the file api.js in 'routes' directory to make use of the new model.
+*  In Routes directory, open api.js with vim api.js, delete the code inside with :%d command and paste there code below into it then save and exit
+
+```
+vim api.js
+```
+copy and past
+```
+const express = require('express');
+const router = express.Router();
+const Todo = require('../models/todo');
+
+// Get all todos (only exposing the id and action field)
+router.get('/todos', (req, res, next) => {
+  Todo.find({}, 'action')
+    .then(data => res.json(data))
+    .catch(next); // Pass the error to the next middleware
+});
+
+// Create a new todo
+router.post('/todos', (req, res, next) => {
+  if (req.body.action) {
+    Todo.create(req.body)
+      .then(data => res.json(data))
+      .catch(next); // Pass the error to the next middleware
+  } else {
+    // Respond with status 400 for bad request
+    res.status(400).json({ error: "The input field is empty" });
+  }
+});
+
+// Delete a todo by id
+router.delete('/todos/:id', (req, res, next) => {
+  Todo.findOneAndDelete({ "_id": req.params.id })
+    .then(data => {
+      if (data) {
+        res.json(data); // If todo is found and deleted
+      } else {
+        // If the id does not match any todo, respond with 404
+        res.status(404).json({ error: "Todo not found" });
+      }
+    })
+    .catch(next); // Pass the error to the next middleware
+});
+
+module.exports = router;
+```
+![image](https://github.com/user-attachments/assets/e12f0b81-76b4-4fdf-90f2-6cf94edcb994)
+
+* The next piece of our application will be the MongoDB Database
+
+  **MongoDB Database**
+  We need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case. Sign up here. Follow the sign up process, select AWS as the cloud provider, and choose a region near you.
+
+  ![image](https://github.com/user-attachments/assets/79064502-405b-4e11-8349-78c984ffcfd9)
+  
+1. Create a MongoDB database and collection inside mLab
+
+MongoDB Cluster Overview
+![image](https://github.com/user-attachments/assets/da6ed31e-33e6-423c-81c3-76ca68907837)
+
+
+* Network Access
+![image](https://github.com/user-attachments/assets/e50d8224-0cef-4c97-add9-5d14fafc228a)
+
+create Databaase
+![image](https://github.com/user-attachments/assets/39c55ab1-a5d8-40c9-8e6f-ad2486823e58)
+
+
+* 2. Create a file in your Todo directory and name it .env, open the file
+ 
+ ```
+touch .env && vim .env
+```
+
+* Add the connection string to access the database in it, just as below:
+```
+DB = ‘mongodb+srv://<username>:<password>@<network-address>/<dbname>?retryWrites=true&w=majority’
+```
+
+![image](https://github.com/user-attachments/assets/812970ff-4646-473d-8ecc-ec0998b99c55)
+
+
+3. Update the index.js to reflect the use of .env so that Node.js can connect to the database.
+```
+vim index.js
+```
+
+copy & past
+
+```
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const routes = require('./routes/api');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+// Connect to the database
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log(`Database connected successfully`))
+  .catch(err => console.log(err));
+
+// Since mongoose promise is deprecated, we override it with Node's promise
+mongoose.Promise = global.Promise;
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(bodyParser.json());
+
+app.use('/api', routes);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  next();
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+```
+Start your server using the command:
+
+```
+node index.js
+```
+
+
+
+  
+
