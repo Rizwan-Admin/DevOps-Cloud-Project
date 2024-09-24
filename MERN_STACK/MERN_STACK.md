@@ -1,11 +1,17 @@
-Content
+# MERN WEB STACK
 
-* ### Backend Configration
-* ### Install ExpressJS
-
-* 
 # MERN (MongoDB, ExpressJS, ReactJS, NodeJS)
+MERN stands for:
 
+- **M**ongoDB: A NoSQL database used for storing data in a flexible, document-oriented format.
+- **E**xpress.js: A web application framework for Node.js, used for building APIs and handling server-side logic.
+- **R**eact.js: A JavaScript library for building user interfaces, particularly for single-page applications.
+- **N**ode.js: A JavaScript runtime that executes server-side code, allowing the development of scalable backend services.
+
+  ![image](https://github.com/user-attachments/assets/1f574e94-8ba0-49b6-80ea-11cfb272f6b4)
+
+
+Together, these technologies form a full-stack framework that enables developers to build modern web applications with a unified language—JavaScript—from the client to the server and the database.
 ### Step 0 - Prerequisites:
 * Ubuntu
 * ### Launch an instance:
