@@ -317,6 +317,14 @@ module.exports = router;
 * The next piece of our application will be the MongoDB Database
 
 # MongoDB Database:
+
+
+![image](https://github.com/user-attachments/assets/d5ffa546-64ea-40b4-8e31-4b0937c5f5f1)
+
+![image](https://github.com/user-attachments/assets/9c0f87ce-0a87-4c55-9fcd-ca4675995efb)
+
+![image](https://github.com/user-attachments/assets/8bae3bb1-c999-4193-8c17-2f0fd53d797e)
+
 . Install your driver
 ```
 npm install mongodb
@@ -410,3 +418,25 @@ node index.js
 
 * ## see a message 'Database connected successfully', if so - we have our backend configured. Now we are going to test it.
 
+# Testing Backend Code without Frontend using RESTful API
+* So far we have written backend part of our To-Do application, and configured a database, but we do not have a frontend UI yet. We need ReactJS code to achieve that. But during development, we will need a way to test our code using RESTfulL API. Therefore, we will need to make use of some API development client to test our code.
+
+* In this project, we will use Postman to test our API. Click Install Postman to download and install postman on your machine.
+
+* Click HERE to learn how perform CRUD operartions on Postman
+
+* Now open your Postman, create a POST request to the API http://<PublicIP-or-PublicDNS>:5000/api/todos. This request sends a new task to our To-Do list so the application could store it in the database.
+
+* note: make sure your set header key Content-Type as application/json
+
+
+![image](https://github.com/user-attachments/assets/8716ffd0-8db2-4010-ba4d-45f2fd369b4b)
+
+
+![image](https://github.com/user-attachments/assets/3dd55a45-ec7d-43c0-a0ef-a30c11570fb2)
+
+
+
+*  Create a GET request to your API on http://<PublicIP-or-PublicDNS>:5000/api/todos. This request retrieves all existing records from out To-do application (backend requests these records from the database and sends it us back as a response to GET request).
+
+ ![image](https://github.com/user-attachments/assets/0713829e-7910-44b6-b0d9-ac0052c3e04d)
