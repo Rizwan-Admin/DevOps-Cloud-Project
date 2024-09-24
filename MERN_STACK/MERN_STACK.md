@@ -317,3 +317,96 @@ module.exports = router;
 * The next piece of our application will be the MongoDB Database
 
 # MongoDB Database:
+. Install your driver
+```
+npm install mongodb
+```
+![image](https://github.com/user-attachments/assets/1e1ef415-4497-4e91-9c93-8f1ac5798064)
+
+
+* In the index.js file, we specified process.env to access environment variables, but we have not yet created this file. So we need to do that now.
+
+* ### Create a file in your Todo directory and name it .env.
+
+```
+touch .env
+```
+
+open file 
+```
+vi .env
+```
+
+
+* add the connection string to access the database in it, just as below:
+```
+DB = 'mongodb+srv://<username>:<password>@<network-address>/<dbname>?retryWrites=true&w=majority'
+```
+
+
+* Now we need to update the index.js to reflect the use of .env so that Node.js can connect to the database.
+* Simply delete existing content in the file, and update it with the entire code below.
+
+* Open the file with vim index.js
+* Press esc
+* Type :Type %d
+* Hit 'Enter'
+
+
+Now, paste the entire code below in the file.
+
+```
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const mongoose = require('mongoose');
+  const routes = require('./routes/api');
+  const path = require('path');
+  require('dotenv').config();
+  
+  const app = express();
+  
+  const port = process.env.PORT || 5000;
+  
+  //connect to the database
+  mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log(`Database connected successfully`))
+  .catch(err => console.log(err));
+  
+  //since mongoose promise is depreciated, we overide it with node's promise
+  mongoose.Promise = global.Promise;
+  
+  app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "\*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+  });
+  
+  app.use(bodyParser.json());
+  
+  app.use('/api', routes);
+  
+  app.use((err, req, res, next) => {
+  console.log(err);
+  next();
+  });
+  
+  app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
+  });
+
+```
+
+![image](https://github.com/user-attachments/assets/c1064156-d3ad-4f2b-b54e-f16408568c2c)
+
+* ### Start your server using the command:
+```
+node index.js
+```
+
+
+![image](https://github.com/user-attachments/assets/fd0c017a-04ad-4c53-bf78-882ec1453bd5)
+
+
+
+* ## see a message 'Database connected successfully', if so - we have our backend configured. Now we are going to test it.
+
