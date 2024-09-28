@@ -5,6 +5,11 @@
 3. Angular -- Fromtend Application Framework -->Handle Client & Server Request.
 4. Node.js -- JavaScript Runttime Environment --> Accepts request & display results to end user.
 
+![image](https://github.com/user-attachments/assets/bdb49cc7-b521-422a-93f4-11054958a0a4)
+
+![image](https://github.com/user-attachments/assets/cb41cd55-fc3c-4691-86c8-2f3f8a58d97a)
+
+
 other side practice :
 https://html-css-js.com/
 OSI model
@@ -558,3 +563,21 @@ Edit inbound rules
   https://<publisc-ip-address>:3300
 
 ![image](https://github.com/user-attachments/assets/128b272e-1a25-4eba-bb17-895ebc5549a6)
+
+
+
+
+
+### Conclusion
+
+In this project, we successfully developed a **Book Management System** using the MEAN stack (MongoDB, Express.js, AngularJS, and Node.js). The application allows users to manage a collection of books by adding, viewing, and deleting books through a user-friendly interface.
+
+Key highlights of the project include:
+- **Frontend (AngularJS)**: A dynamic and interactive single-page application (SPA) that provides a seamless user experience for managing books.
+- **Backend (Node.js and Express.js)**: A robust RESTful API to handle book operations such as retrieving, adding, and deleting books.
+- **Database (MongoDB)**: A NoSQL database to store book details, ensuring efficient and scalable data management.
+  
+During the development process, we integrated the frontend and backend components, ensuring smooth data communication via HTTP requests. Using **Mongoose**, we efficiently modeled and validated our data. The **AngularJS** application interacts with this backend to provide real-time updates without refreshing the page.
+
+This project provided hands-on experience in building full-stack applications, handling RESTful APIs, and working with asynchronous operations. Overall, the project showcases how the MEAN stack can be used to create efficient and scalable web applications.
+
