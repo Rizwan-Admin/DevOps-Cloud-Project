@@ -17,5 +17,37 @@ If we extend this concept further and add a Database Server to our architecture,
 
 In this case, our Web Server has a role of a "Client" that connects and reads/writes to/from a Database (DB) Server (MySQL, MongoDB, Oracle, SQL Server or any other), and the communication between them happens over a Local Network (it can also be Internet connection, but it is a common practice to place Web Server and DB Server close to each other in local network).
 
+* Today, we will be implementing a server-client architecture using MYSQL database managemet system on aws EC2 instance.
+
+# Steps involved:
+* Provisioning a New Two EC2 instance of t2.micro family with Ubuntu Server 24.04 LTS (HVM):
+```
+Server A name - `mysql server`
+Server B name - `mysql server`
+```
+![image](https://github.com/user-attachments/assets/4bb754c6-ad69-48ee-ade2-7ff92cc24ccd)
+![image](https://github.com/user-attachments/assets/e6b4ba71-0ad5-4953-9d52-1ee626018e2b)
+
+
+
+* Connect to your instance via ssh
+
+  ![image](https://github.com/user-attachments/assets/134d7c55-1789-49b9-a5f1-4d6e64636318)
+
+
+* Update and Upgrading packages in both instances:
+  ```
+  sudo apt update && sudo apt upgrade -y
+  ```
+  ![image](https://github.com/user-attachments/assets/a4d265f0-4fee-48f9-be0d-15a90955dbc6)
+
+
+* Edit the mysql configuration file to allow remote connections.
+  ```
+  sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+  ```
+
+  
+  
 
 
