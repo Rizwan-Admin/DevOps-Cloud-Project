@@ -265,7 +265,7 @@ SELECT * FROM test_table;
 
 In this project, we successfully implemented a **MySQL Client-Server architecture** using two EC2 instances: **Server-A (MySQL Server)** and **Server-B (MySQL Client)**. The process involved setting up MySQL on Server-A, configuring remote access, and installing the MySQL client on Server-B. Networking was secured by allowing only the private IP of Server-B to connect to Server-A.
 
-We tested the architecture by connecting to the MySQL server from the client, creating a database, performing SQL operations, and verifying the functionality through database queries. This deployment is now fully functional, enabling efficient client-server communication for database management.
+I tested the architecture by connecting to the MySQL server from the client, creating a database, performing SQL operations, and verifying the functionality through database queries. This deployment is now fully functional, enabling efficient client-server communication for database management.
 
 
 
