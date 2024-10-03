@@ -41,11 +41,22 @@ Server B name - `mysql server`
 
 ![image](https://github.com/user-attachments/assets/bc29380a-0f5f-4893-a8ca-44aa38123a59)
 
-Step 2: Configure the MySQL Server on Server-A 
+
+
+
+
+
+
+
+
+
+
+
+
+### Step 2: Configure the MySQL Server on Server-A 
 
 1. SSH into Server-A (MySQL Server):
 ```
-chmod 400 my-ec2-key.pem
 ssh -i "my-ec2-key.pem" ubuntu@p<ublic-ip-address>
 ```
 ![image](https://github.com/user-attachments/assets/32d55716-1bbc-4507-b7df-8bc4da0de6e7)
