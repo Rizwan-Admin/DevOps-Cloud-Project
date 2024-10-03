@@ -1,6 +1,5 @@
-![image](https://github.com/user-attachments/assets/e2320b39-c120-49c4-85fc-7b2ce4dcad89)# Client-Server Architecture with MySQL
 
-* ## Understanding Client-Server Architecture
+* ## Client-Server Architecture
 
   * Client-Server refers to an architecture in which two or more computers are connected together over a network to send and receive requests between one another.
  
@@ -36,7 +35,9 @@ Server B name - `mysql server`
 
 
 =======================
-Step 1: Launch EC2 Instances
+
+
+### Step 1: Launch EC2 Instances
 
 ![image](https://github.com/user-attachments/assets/bc29380a-0f5f-4893-a8ca-44aa38123a59)
 
@@ -149,7 +150,7 @@ sudo apt install mysql-client -y
 
 
 
-Step 4: Configure Networking
+### Step 4: Configure Networking
 1. Open MySQL Port 3306 on Server-A Security Group:
 In AWS, modify the Security Group for Server-A (MySQL Server) to allow inbound traffic on port 3306 from the private IP address of Server-B (172.31.12.16).
 
@@ -188,17 +189,8 @@ SHOW DATABASES;
 ![image](https://github.com/user-attachments/assets/85d488f1-69ee-46c7-b907-e1908e31068d)
 
 
-Step 6: Perform SQL Operations
 
 ```
-USE test_db;
-
-CREATE TABLE test_table (
-  item_id INT AUTO_INCREMENT,
-  content VARCHAR(255),
-  PRIMARY KEY (item_id)
-);
-
 INSERT INTO test_table (content) VALUES ('My first choice football club is Chelsea');
 INSERT INTO test_table (content) VALUES ('My second choice football club is R.Madrid');
 ```
@@ -214,7 +206,55 @@ INSERT INTO test_table (content) VALUES ('My second choice football club is R.Ma
 
 
 
+Here is the revised **Step 6** with more detailed SQL operations, keeping it concise:
 
+---
+
+
+
+
+```sql
+SHOW DATABASES;
+```
+![image](https://github.com/user-attachments/assets/056e510c-b4c6-4b37-b959-704959b99365)
+
+
+#### 2. **Use the `test_db` Database:**
+```sql
+USE test_db;
+```
+![image](https://github.com/user-attachments/assets/d3dd622c-3788-4c71-9724-273089f0bae7)
+
+#### 3. **Create a Table in `test_db`:**
+```sql
+CREATE TABLE test_table (
+  item_id INT AUTO_INCREMENT,
+  content VARCHAR(255),
+  PRIMARY KEY (item_id)
+);
+```
+
+#### 4. **Insert Data into `test_table`:**
+```sql
+INSERT INTO test_table (content) VALUES ('My first choice football club is Chelsea');
+INSERT INTO test_table (content) VALUES ('My second choice football club is R.Madrid');
+```
+![image](https://github.com/user-attachments/assets/5901937a-c39a-4798-a4b9-f1a316bd4444)
+
+#### 5. **Select Data from `test_table`:**
+```sql
+SELECT * FROM test_table;
+```
+![image](https://github.com/user-attachments/assets/93b34723-2409-4bf8-900f-177bbd24a2fd)
+
+
+
+
+### Conclusion
+
+In this project, we successfully implemented a **MySQL Client-Server architecture** using two EC2 instances: **Server-A (MySQL Server)** and **Server-B (MySQL Client)**. The process involved setting up MySQL on Server-A, configuring remote access, and installing the MySQL client on Server-B. Networking was secured by allowing only the private IP of Server-B to connect to Server-A.
+
+We tested the architecture by connecting to the MySQL server from the client, creating a database, performing SQL operations, and verifying the functionality through database queries. This deployment is now fully functional, enabling efficient client-server communication for database management.
 
 
 
