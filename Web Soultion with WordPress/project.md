@@ -29,6 +29,12 @@ Three Tier Architechture is a client- Server sofware architecture pattern that c
 
 **--->** Use **RedHat Os** for this Project
 
+## Step 1 - Prepare a Web Server
+1. Launch an EC2 instance --> that will serve as -->**Web server**
+   Create 3 volumes in the same AZ as web server EC2 , eacch of 10 GiB.
+   Learn How to ADd EBS Voulme to an EC2 Instance https://www.youtube.com/watch?v=HPXnXkBzIHw
+
+   
 
 
 
