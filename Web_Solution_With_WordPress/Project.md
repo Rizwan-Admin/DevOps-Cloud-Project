@@ -435,7 +435,38 @@ sudo mysql -u admin -p -h 172.31.0.14
 ```
 SHOW DATABASES;
 ```
+
+
+
 ![image](https://github.com/user-attachments/assets/dbbfaae1-7511-4d4a-8f41-2feb019b6e74)
+
+
+
+
+
+
+
+
+* <public-ipadres>wordpress
+
+
+
+![image](https://github.com/user-attachments/assets/d9bd7bad-df93-4fa2-a9a0-d6030bb6b138)
+2nd step
+![image](https://github.com/user-attachments/assets/edbfb9c1-7fc3-4889-aafd-39738fa34da1)
+
+![image](https://github.com/user-attachments/assets/69fe5882-1504-4475-a06c-20fe544ab0c7)
+
+![image](https://github.com/user-attachments/assets/51733b16-af6e-414d-8758-1dc60b44b211)
+
+
+
+
+
+
+
+
+
 
 
 
