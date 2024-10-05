@@ -470,7 +470,7 @@ SHOW DATABASES;
 
 
 
-
+* Try to access from  browser the link to your WordPress **http://<Web-Server-Public-IP-Address>/wordpress/**
 
 
 
