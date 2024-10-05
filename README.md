@@ -10,6 +10,8 @@
 
 * ### Project - 5 web Solution With WordPress
 
+* ### Project - 6 DevOps Tooling Website Solution
+
 
 
 
