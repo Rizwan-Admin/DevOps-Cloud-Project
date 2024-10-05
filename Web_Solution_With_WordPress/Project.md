@@ -232,6 +232,48 @@ df -f
 
 
 
+## Step 2 — Prepare the Database Server
+
+![image](https://github.com/user-attachments/assets/35eed042-e35c-4b72-b7b4-63e3c77388c3)
+
+![image](https://github.com/user-attachments/assets/6045bbdb-387d-4883-a6ce-3fb830252eff)
+
+
+![image](https://github.com/user-attachments/assets/a69476eb-b5ac-40a6-a5d9-913bd74527aa)
+
+
+
+## Step 3 — Install WordPress on your Web Server EC2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
