@@ -30,16 +30,19 @@ Three Tier Architechture is a client- Server sofware architecture pattern that c
 **--->** Use **RedHat Os** for this Project
 
 ## Step 1 - Prepare a Web Server
-1. Launch an EC2 instance --> that will serve as -->**Web server**
+1. **Launch an EC2 instance --> that will serve as --> Web server**
 
    Learn How to ADd EBS Voulme to an EC2 Instance https://www.youtube.com/watch?v=HPXnXkBzIHw
+![image](https://github.com/user-attachments/assets/71b95c6d-2745-4103-ba38-35fad934be44)
 
-   
-![image](https://github.com/user-attachments/assets/c45e449e-1e3d-4433-bffe-13ec03f36a99)
+* Connect instance via ssh & run ``` lsblk ```
+  ![image](https://github.com/user-attachments/assets/5759064c-ba06-4908-b2f7-a98f7548c6aa)
 
-*    Create 3 volumes in the same AZ as web server EC2 , eacch of 10 GiB
 
-![image](https://github.com/user-attachments/assets/3b65796b-acda-4968-8fb3-5aa5b1071352)
+*    **Create 3 volumes in the same AZ as web server EC2 , eacch of 10 GiB**
+![image](https://github.com/user-attachments/assets/87af0680-01b1-49f6-aeb5-6b8633ef7e92)
+
+
 
 * Attach all three volumes one by one to your Web Server EC2 instance.
 * use lsblk command to inspect what block are attached to the server
@@ -47,7 +50,8 @@ Three Tier Architechture is a client- Server sofware architecture pattern that c
   ```
   lsblk
   ````
-![image](https://github.com/user-attachments/assets/f4002bdc-66a5-468d-bc93-4163f10f65af)
+  ![image](https://github.com/user-attachments/assets/c3606bb4-acdb-4f36-945e-2f4df134990d)
+
 
 
 * use df -h command to see all mount and free space on server
@@ -55,7 +59,9 @@ Three Tier Architechture is a client- Server sofware architecture pattern that c
   df -h
   ```
   
-![image](https://github.com/user-attachments/assets/90d1a877-d4a0-42f5-a5c7-dac61b30e98d)
+![image](https://github.com/user-attachments/assets/58700d14-27f1-48fe-b8bd-ec861910327c)
+
+
 
 
 
@@ -63,21 +69,31 @@ Three Tier Architechture is a client- Server sofware architecture pattern that c
 ```
 sudo gdisk /dev/xvdbf
 ```
-![image](https://github.com/user-attachments/assets/2694dc96-00d2-402b-9208-f0ab9add179f)
+![image](https://github.com/user-attachments/assets/738028a7-694b-4575-93fb-13a72b663733)
 
 
+```
+sudo gdisk /dev/xvdbg
+```
+```
+sudo gdisk /dev/xvdbh
+```
 * Use lsblk utility to view the newly configured partition on each of the 3 disks.
 ```
 lsblk
 ```
-![image](https://github.com/user-attachments/assets/18e19ffc-c58a-4ccc-9d2c-8045d8481a09)
+![image](https://github.com/user-attachments/assets/0511b5b2-887b-4018-be5f-107d7de24b29)
+
+
 
 * Install lvm2 package. Lvm2 is used for managing disk drives and other storage devices
 
 ```
 sudo yum install lvm2
 ```
-![image](https://github.com/user-attachments/assets/cb904063-2be1-47a3-b009-467f9fc04633)
+![image](https://github.com/user-attachments/assets/ea8ff5a2-6f34-42b2-9c9c-b5d6c64e2246)
+
+![image](https://github.com/user-attachments/assets/1ff24dd6-3d83-49b8-875c-0aeb59a73116)
 
 
 * Run sudo lvmdiskscan to check for available partitions.
@@ -85,7 +101,8 @@ sudo yum install lvm2
 ```
 sudo lvmdiskscan
 ```
-![image](https://github.com/user-attachments/assets/af63fa94-7cff-4550-aa83-743ee065caa3)
+![image](https://github.com/user-attachments/assets/419fccfd-a995-480d-b797-851d98c0da8d)
+
 
 * Use pvcreate utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM.
 ```
@@ -93,29 +110,29 @@ sudo pvcreate /dev/xvdbf1
 sudo pvcreate /dev/xvdbg1
 sudo pvcreate /dev/xvdbh1
 ```
-
-![image](https://github.com/user-attachments/assets/5ae402d7-9975-43b4-816c-9327acabb61d)
+![image](https://github.com/user-attachments/assets/485e969f-c70b-495c-8758-b5af1b53efdc)
 
 * Verify that your Physical volume has been created successfully by running sudo pvs
   ```
   sudo pvs
   ```
 
-![image](https://github.com/user-attachments/assets/70449c3c-511a-4da5-a979-cdc6f9497497)
+![image](https://github.com/user-attachments/assets/9e91f24a-a724-4779-ac3b-fdb5c5bf988e)
 
 * Use vgcreate utility to add all 3 PVs to a volume group (VG). Name the VG webdata-vg
 
 ```
 sudo vgcreate webdata-vg /dev/xvdbh1 /dev/xvdbg1 /dev/xvdbf1
 ```
-![image](https://github.com/user-attachments/assets/07d7f8f8-6061-4b79-85a9-c8ea43c522cc)
+![image](https://github.com/user-attachments/assets/554d3fe8-20b2-4898-827c-22b4553d5104)
 
 * Verify that your VG has been created successfully by running sudo vgs
 
 ```
 sudo vgs
 ```
-![image](https://github.com/user-attachments/assets/810c5bbb-b7da-49e6-b7e9-a345aa3407d2)
+![image](https://github.com/user-attachments/assets/27c60511-18fa-4aad-9204-67837c2a4684)
+
 
 
 
@@ -125,12 +142,14 @@ sudo vgs
 ```
 sudo lvcreate -n apps-lv -L 14G webdata-vg
 ```
-![image](https://github.com/user-attachments/assets/ad6a2d09-ebc8-40df-85f8-73603cd4485b)
+![image](https://github.com/user-attachments/assets/0ee57c8a-4a66-459c-8478-67da7ffe2252)
+
 
 ```
 sudo lvcreate -n logs-lv -L 14G webdata-vg
 ```
-![image](https://github.com/user-attachments/assets/804622c8-940c-49d0-966d-a3cd7dd51c03)
+![image](https://github.com/user-attachments/assets/7896a82a-c171-4f37-a59c-bb2ccdb18b75)
+
 
 
 * Verify that your Logical Volume has been created successfully by running sudo lvs
@@ -138,29 +157,34 @@ sudo lvcreate -n logs-lv -L 14G webdata-vg
 ```
 sudo lvs
 ```
-![image](https://github.com/user-attachments/assets/d944432b-42aa-4197-8c2c-7008edca7912)
+![image](https://github.com/user-attachments/assets/8b3c2764-1ffa-43d1-9d3f-f679d2f8a3b2)
+
 
 * Verify the entire setup
 ```
 sudo vgdisplay -v #view complete setup - VG, PV, and LV
 ```
 
-![image](https://github.com/user-attachments/assets/d414372a-5a83-4ebc-8d60-501dcfe8670d)
+![image](https://github.com/user-attachments/assets/879b2c24-c7a6-4214-b33d-ea738c272078)
+
 ```
 sudo lsblk 
 ```
-![image](https://github.com/user-attachments/assets/ece88432-2498-460e-b667-b395c9a37a78)
+![image](https://github.com/user-attachments/assets/39a09138-b62e-497a-a93d-a733358ad058)
+
 
 * Use mkfs.ext4 to format the logical volumes with ext4 filesystem
 ```
 sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
 ```
-![image](https://github.com/user-attachments/assets/2c8f8f97-ed7f-4f28-8bc5-2552a690cd28)
+![image](https://github.com/user-attachments/assets/d3d56936-6b86-40e5-bb68-010896e1b481)
+
 
 ```
 sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
 ```
-![image](https://github.com/user-attachments/assets/6431d36b-f7ef-4865-b285-f05a340667e7)
+![image](https://github.com/user-attachments/assets/aee45f93-efcb-4f6c-8515-3e156fd9a21c)
+
 
 * Create /var/www/html directory to store website files sudo mkdir -p /var/www/html
 
@@ -183,7 +207,8 @@ sudo mount /dev/webdata-vg/apps-lv /var/www/html/
 ```
 sudo rsync -av /var/log/ /home/recovery/logs/
 ```
-![image](https://github.com/user-attachments/assets/fbac7337-4bed-4fa2-8330-445d1877b008)
+![image](https://github.com/user-attachments/assets/d2a5c111-c230-4c5b-be88-9621c53785db)
+
 
 
 
@@ -197,7 +222,8 @@ sudo mount /dev/webdata-vg/logs-lv /var/log
 ```
 sudo rsync -av /home/recovery/logs/ /var/log
 ```
-![image](https://github.com/user-attachments/assets/b02de7cf-7499-48ac-a01a-be17b0b29b33)
+
+![image](https://github.com/user-attachments/assets/dead1f14-9a08-40bd-8f09-3a56f44f7f23)
 
 
 
@@ -210,10 +236,11 @@ sudo blkid
 ```
 ![image](https://github.com/user-attachments/assets/154f144d-57db-4517-908d-54184900a600)
 
-```
-UUID=6c190cb5-9192-4e7a-a967-68b0f1f2a236
-UUID=fc676e41-371a-4f87-bcc7-56f414b306a1
-```
+
+UUID=29d40505-379a-485c-84db-977508c1723a
+
+UUID=bdd6001b-4ed7-440f-9fc6-273d18382db0
+
 
 
 ```
@@ -230,7 +257,7 @@ sudo vi /etc/fstab
 ```
 sudo mount -a
 ```
-![image](https://github.com/user-attachments/assets/36d50653-ed80-4238-ae50-c5195b0d45cb)
+![image](https://github.com/user-attachments/assets/58db55c1-e709-474e-9b88-8a20d7f517c6)
 
 
 
@@ -238,8 +265,8 @@ sudo mount -a
 ```
 sudo systemctl daemon-reload
 ```
+![image](https://github.com/user-attachments/assets/adfa010b-55d6-4392-bb3d-2d4c9589f384)
 
-![image](https://github.com/user-attachments/assets/5eda33b5-112d-4677-8e8e-d663357adf1f)
 
 
 
@@ -248,7 +275,8 @@ sudo systemctl daemon-reload
 ```
 df -h
 ```
-![image](https://github.com/user-attachments/assets/eba402f7-0246-44b7-9833-e545feaa17b5)
+![image](https://github.com/user-attachments/assets/00970de6-32d1-4ae4-bbe7-d6e203e84e30)
+
 
 
 
