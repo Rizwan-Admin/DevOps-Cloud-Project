@@ -246,42 +246,196 @@ df -f
 ## Step 3 — Install WordPress on your Web Server EC2
 
 
+Update the repository
+```
+sudo yum -y update
+```
+
+Install wget, Apache and it's dependencies
+```
+sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
+```
+![image](https://github.com/user-attachments/assets/50d5e78d-d1c5-412d-991f-9ea95ed9a465)
+
+
+* Start Apache
+```
+sudo systemctl enable httpd
+```
+```
+sudo systemctl start httpd
+```
+```
+sudo systemctl status httpd
+```
+![image](https://github.com/user-attachments/assets/367b331d-006d-47bf-ae41-7218b16ae399)
+
+* To install PHP and it's dependencies
+
+ ``` 
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+```
+![image](https://github.com/user-attachments/assets/9f472220-ade0-4905-8691-8ab6c7c61c2e)
+
+```
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+```
+![image](https://github.com/user-attachments/assets/3bc1a22c-f41c-45aa-bdf9-3cbcdca81e6a)
+
+```
+sudo yum module list php
+```
+![image](https://github.com/user-attachments/assets/49f1229b-58ed-4d03-99b2-25e53003cbfd)
+
+```
+sudo yum module reset php
+```
+![image](https://github.com/user-attachments/assets/f3400f69-48d0-4297-9b52-9fdeda79be3c)
+
+```
+sudo yum module enable php:remi-7.4
+```
+```
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+```
+![image](https://github.com/user-attachments/assets/0ecdcc59-8f9b-4c3b-8bc4-b8729fb97f9f)
+
+```
+sudo systemctl start php-fpm
+```
+```
+sudo systemctl enable php-fpm
+```
+```
+setsebool -P httpd_execmem 1
+```
+Restart Apache
+```
+sudo systemctl restart httpd
+```
+
+* Download wordpress and copy wordpress to /var/www/html
+```
+mkdir wordpress
+```
+![image](https://github.com/user-attachments/assets/60ffbcb5-1159-4ca7-b79a-091005fa4b95)
+
+```
+cd wordpress
+```
+```
+sudo wget http://wordpress.org/latest.tar.gz
+```
+![image](https://github.com/user-attachments/assets/d0793bd3-d55b-471b-9ba6-2c3959717346)
+
+```
+sudo tar -xzvf latest.tar.gz
+```
+```
+sudo rm -rf latest.tar.gz
+```
+```
+sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
+```
+```
+sudo cp -R wordpress /var/www/html/
+```
+![image](https://github.com/user-attachments/assets/2deb638e-248f-45bd-baeb-878f24f895b8)
 
 
 
+* Configure SELinux Policies
+```
+sudo chown -R apache:apache /var/www/html/wordpress
+```
+```
+sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
+```
+```
+sudo setsebool -P httpd_can_network_connect=1
+```
+
+![image](https://github.com/user-attachments/assets/60fc0290-779f-4553-a218-0ee1b9738347)
+
+## Step 4 — Install MySQL on your DB Server EC2
+
+```
+sudo yum update
+```
+```
+sudo yum install mysql-server
+```
+
+Verify that the service is up and running by using sudo systemctl status mysqld, if it is not running, restart the service and enable it so it will be running even after reboot:
+```
+sudo systemctl restart mysqld
+```
+```
+sudo systemctl enable mysqld
+```
 
 
 
+```
+sudo systemctl status mysqld
+```
+![image](https://github.com/user-attachments/assets/308a84ff-5410-46ff-b2e5-d55c0223f873)
+
+## Step 5 — Configure DB to work with WordPress
+
+```
+sudo mysql
+```
+```
+CREATE DATABASE wordpress;
+```
+```
+CREATE USER `admin`@`172.31.6.150` IDENTIFIED BY 'admin';
+```
+
+```
+GRANT ALL ON wordpress.* TO 'admin'@'172.31.6.150';
+```
+```
+FLUSH PRIVILEGES;
+```
+
+```
+SHOW DATABASES;
+```
+```
+exit
+```
+
+![image](https://github.com/user-attachments/assets/2de6da04-9b39-4c3f-b3cd-26bfb0862436)
 
 
+## Step 6 — Configure WordPress to connect to remote database.
+
+* Hint: Do not forget to open MySQL port 3306 on DB Server EC2. For extra security, you shall allow access to the DB server ONLY from your Web Server's IP address, so in the Inbound Rule configuration specify source as /32
+
+* Edit inbound rules
+
+![image](https://github.com/user-attachments/assets/5bef02a5-73ce-493d-9dfc-7cc958e62f59)
 
 
+* Install MySQL client and test that you can connect from your Web Server to your DB server by using mysql-client
+
+```
+sudo yum install mysql
+```
 
 
+```
+sudo mysql -u admin -p -h 172.31.0.14
+```
 
+* Verify if you can successfully execute SHOW DATABASES; command and see a list of existing databases.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
+SHOW DATABASES;
+```
+![image](https://github.com/user-attachments/assets/dbbfaae1-7511-4d4a-8f41-2feb019b6e74)
 
 
 
