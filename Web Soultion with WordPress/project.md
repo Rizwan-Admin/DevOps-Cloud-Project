@@ -373,16 +373,156 @@ sudo systemctl enable php-fpm
 sudo setsebool -P httpd_execmem 1
 ```
 
+![image](https://github.com/user-attachments/assets/b729c4e8-ddd7-4a4d-ba5a-2b16afe9a799)
+
+
+
+* Restart Apache
+```
+sudo systemctl restart httpd
+```
+
+![image](https://github.com/user-attachments/assets/3c76ac28-1b3c-42a7-b67a-fe6431aeea4f)
+
+
+* Download wordpress and copy wordpress to /var/www/html
+
+```
+mkdir wordpress
+```
+![image](https://github.com/user-attachments/assets/8b05a293-61da-4d18-89d1-fcc579d61c77)
+
+```
+cd wordpress
+```
+```
+sudo wget http://wordpress.org/latest.tar.gz
+```
+
+```
+sudo tar -xzvf latest.tar.gz
+```
+![image](https://github.com/user-attachments/assets/aaac5cfe-8a91-4467-bd3d-f5fcb375bfd2)
+
+
+
+```
+sudo rm -rf latest.tar.gz
+```
+
+
+```
+sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
+```
+
+```
+cp -R wordpress /var/www/html/
+```
+
+![image](https://github.com/user-attachments/assets/d0bd3c5b-5875-4531-9673-2ca4ed5f00d2)
+
+
+
+
+
+
+
+* Configure SELinux Policies
+```
+sudo chown -R apache:apache /var/www/html/wordpress
+```
+![image](https://github.com/user-attachments/assets/4a5cf28c-d2dd-47c5-8830-53797c1cc79b)
+
+```
+
+sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
+```
+![image](https://github.com/user-attachments/assets/85ec8999-f689-4874-8fe7-f65d1cad08d6)
+
+
+
+```
+sudo setsebool -P httpd_can_network_connect=1
+```
+![image](https://github.com/user-attachments/assets/e1ba413b-e781-4582-8cf8-f20d71dd58db)
+
+
+
+
+
+
+* Step 4 — Install MySQL on your DB Server EC2
+```
+sudo yum update
+```
+
+```
+sudo yum install mysql-server
+```
+
+* Verify that the service is up and running by using sudo systemctl status mysqld, if it is not running, restart the service and enable it so it will be running even after reboot:
+
+
+```
+sudo systemctl status mysqld
+```
+
+
+```
+sudo systemctl restart mysqld
+```
+
+```
+sudo systemctl enable mysqld
+```
+
+![image](https://github.com/user-attachments/assets/e85baf02-25ed-43a9-9305-c4efd99632ff)
+
+
+
+## Step 5 — Configure DB to work with WordPress
+```
+sudo mysql
+```
+```
+CREATE DATABASE wordpress;
+```
+
+```
+CREATE USER `myuser`@`172.31.4.211` IDENTIFIED BY 'mypass';
+```
+
+```
+GRANT ALL ON wordpress.* TO 'myuser'@'172.31.4.211';
+```
+```
+FLUSH PRIVILEGES;
+```
+
+```
+SHOW DATABASES;
+```
+```
+exit
+```
+
+![image](https://github.com/user-attachments/assets/30e2d776-8d9f-4f00-8228-9308b8446799)
+
+
+## Step 6 — Configure WordPress to connect to remote database.
+Edit inbound rules
+
 ![Uploading image.png…]()
 
 
+* Install MySQL client and test that you can connect from your Web Server to your DB server by using mysql-client
+```
+sudo yum install mysql
+```
 
-
-
-
-
-
-
+```
+sudo mysql -u admin -p -h 172.31.3.218
+```
 
 
 
