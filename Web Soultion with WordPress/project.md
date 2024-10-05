@@ -290,6 +290,90 @@ connect via ssh
 
 
 
+## Step 3 — Install WordPress on your Web Server EC2
+
+
+
+* Update the repository
+```
+sudo yum -y update
+```
+
+
+* Install wget, Apache and it's dependencies
+```
+sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
+```
+![image](https://github.com/user-attachments/assets/8f797b12-2844-4d62-9a15-0b338421df80)
+
+
+
+* Start Apache
+```
+sudo systemctl enable httpd
+```
+![image](https://github.com/user-attachments/assets/f14cc71d-f1cd-4035-9e3b-f9fb23e21b92)
+```
+sudo systemctl start httpd
+```
+![image](https://github.com/user-attachments/assets/648673cd-c401-4147-af28-bf67f73af60d)
+
+
+
+* To install PHP and it's dependencies
+```
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+```
+![image](https://github.com/user-attachments/assets/4224923a-3152-458d-bed6-433028d329b8)
+
+```
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+```
+![image](https://github.com/user-attachments/assets/ce944399-7588-458d-a270-01ff6393c2d1)
+
+
+```
+sudo yum module list php
+```
+![image](https://github.com/user-attachments/assets/de51c7e8-3e37-435c-946d-d370fa334ef9)
+
+
+```
+sudo yum module reset php
+```
+![image](https://github.com/user-attachments/assets/0c97d292-1166-4c8d-9d53-b92912d36344)
+
+
+```
+sudo yum module enable php:remi-7.4
+```
+![image](https://github.com/user-attachments/assets/753b8743-188b-497c-a55f-c3884164c9e5)
+
+```
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+```
+![image](https://github.com/user-attachments/assets/6870fe91-413c-4506-b770-20390c391cb4)
+![image](https://github.com/user-attachments/assets/c783b96f-29a7-41a3-8ffc-0a890de9f501)
+
+
+
+```
+sudo systemctl start php-fpm
+```
+![image](https://github.com/user-attachments/assets/ecf746f9-9142-42de-89df-c8240c49bb73)
+
+
+```
+sudo systemctl enable php-fpm
+```
+![image](https://github.com/user-attachments/assets/6909f311-5bff-485c-a924-e602291a51ca)
+
+
+```
+sudo setsebool -P httpd_execmem 1
+```
+
+![Uploading image.png…]()
 
 
 
@@ -299,4 +383,17 @@ connect via ssh
 
 
 
-i::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
