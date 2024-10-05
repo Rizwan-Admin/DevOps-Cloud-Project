@@ -278,8 +278,14 @@ df -h
 ![image](https://github.com/user-attachments/assets/00970de6-32d1-4ae4-bbe7-d6e203e84e30)
 
 
+## Step 2- Prepare Database Server
+* Launch Instamce:
+![image](https://github.com/user-attachments/assets/25a6d48c-f337-4700-8595-079ecbf81f45)
+
+connect via ssh
 
 
+![image](https://github.com/user-attachments/assets/77c4e19a-1516-47f9-b5c5-10270317b9b9)
 
 
 
