@@ -501,8 +501,13 @@ VALUES (1, 'myuser', '5f4dcc3b5aa765d61d8327deb882cf99', 'user@mail.com', 'admin
 ```
 
 
-
-
+* Open the website in your browser http://Web-Server-Public-IP-Addressor Public-DNS-Name/index.php and make sure you can login into the website with your user and password.
+```
+http://public-ip-address/login.php
+```
 ![image](https://github.com/user-attachments/assets/bf15f470-f237-4ac0-8fe8-081e281a2ef4)
+![image](https://github.com/user-attachments/assets/98a6915d-d204-4d59-b6c0-6b8a91159954)
 
+### Conclusion
 
+In implementing a web solution for the DevOps team using the LAMP stack, we successfully integrated a remote MySQL database and NFS servers to enhance the application’s performance and scalability. This architecture not only streamlines data access and management but also ensures efficient file sharing across the team. By leveraging these technologies, we have established a robust framework that supports the dynamic needs of the DevOps environment, facilitating seamless collaboration and increased productivity. This project showcases our commitment to employing modern practices in cloud engineering to deliver efficient and scalable solutions.
