@@ -391,7 +391,6 @@ sudo vi /etc/fstab
 add following line
 ```
 <NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0
-
 ```
 172.31.15.210:/mnt/apps /var/www nfs defaults 0 0
 
@@ -429,12 +428,9 @@ Fork the tooling source code from Darey.io Github Account to your Github account
 
 ```
 sudo yum install git -y
-
 ```
-
-````
+```
 sudo git clone https://github.com/Rizwan-Admin/tooling.git
-
 ```
 
 ![image](https://github.com/user-attachments/assets/b0ae39a6-a627-418c-bdd6-1320bd7dfe35)
@@ -455,7 +451,8 @@ and set SELINUX=disabled
 ![image](https://github.com/user-attachments/assets/f5a056f0-7427-48df-a760-c1c039996da7)
 
 
-Then restrt httpd.
+Then restrt httpd
+
 ```
 sudo systemctl restart httpd
 sudo systemctl status httpd
