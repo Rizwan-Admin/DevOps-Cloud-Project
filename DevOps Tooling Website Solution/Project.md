@@ -10,3 +10,28 @@
 -Code Repository: GitHub
 ```
 -The diagram below shows the architecture of the solution.
+
+
+<img width="696" alt="image-17" src="https://github.com/user-attachments/assets/c7b5827a-9489-421b-85b2-2bd398fb4d06">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
