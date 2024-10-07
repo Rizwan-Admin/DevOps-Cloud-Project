@@ -1,5 +1,6 @@
+# Load balancer Solution With Apache (Project)
 
-# Prerequisites
+### Prerequisites done!
 Make sure that you have the following servers installed and configured within the previous project:
 
 -Two RHEL8 Web Servers
@@ -167,7 +168,7 @@ curl http://Web2
 * ### Now set up looks like this:
 <img width="715" alt="image-23" src="https://github.com/user-attachments/assets/cf5729ac-ea9d-46d4-b1af-b5c0c1c4864c">
 
-Conclusion
+## Conclusion
 The Apache Load Balancing solution successfully met the project's objectives by providing a scalable, reliable, and efficient way to manage traffic to our web application. The implementation not only improved performance but also prepared our infrastructure for future growth and increased user demand.
 
 
