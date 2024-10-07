@@ -14,10 +14,13 @@ Make sure that you have the following servers installed and configured within th
 
 
 
+![image](https://github.com/user-attachments/assets/c75d8b7b-ed70-4c4b-af57-b1c00cddb3a2)
 
 
+![image](https://github.com/user-attachments/assets/933af28a-8202-4627-9df1-045d73ca6aea)
 
 
+![Uploading image.png…]()
 
 
 
