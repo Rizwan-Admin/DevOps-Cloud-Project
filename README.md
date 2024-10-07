@@ -6,14 +6,17 @@
 
 * ### Project - 3 MERN STACK WEB DEVLOPMENT ON AWS
 
-* ### Project - 4 Client-Server Architecture with MySQL
+* ### Project - 4 MEAN Stack Deployment on AWS
 
-* ### Project - 5 web Solution With WordPress
+* ### Project - 5 Client-Server Architecture with MySQL
 
-* ### Project - 6 DevOps Tooling Website Solution
+* ### Project - 6 Web Solution With WordPress
 
+* ### Project - 7 Devops Tooling Website Solution
 
+* ### Project - 8 Load Balancer Solution With Apache
 
+* ### Project - 9 Tooling Website deployment automation with Continuous Integration. Introduction to Jenkins
 
 
 
