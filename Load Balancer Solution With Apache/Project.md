@@ -124,16 +124,55 @@ sudo tail -f /var/log/httpd/access_log
 ![image](https://github.com/user-attachments/assets/03778743-39ac-48ae-af57-7fbfc9ad9aca)
 
 
-![image](https://github.com/user-attachments/assets/c75d8b7b-ed70-4c4b-af57-b1c00cddb3a2)
+* ## Optional Step - Configure Local DNS Names Resolution
 
 
-![image](https://github.com/user-attachments/assets/933af28a-8202-4627-9df1-045d73ca6aea)
+*  ### Open this file on your LB server
+```
+sudo vi /etc/hosts
+```
+#Add 2 records into this file with Local IP address and arbitrary name for both of your Web Servers
+
+<WebServer1-Private-IP-Address> Web1
+<WebServer2-Private-IP-Address> Web2
+```
+172.31.0.191 web1
+172.31.2.108 web2
+```
+![image](https://github.com/user-attachments/assets/df5548b9-2a12-4ec5-a034-ac829b14f76f)
+
+* Now update your LB config file with those names instead of IP addresses.
+
+```
+BalancerMember http://web1:80 loadfactor=5 timeout=1
+BalancerMember http://web2:80 loadfactor=5 timeout=1
+```
+```
+sudo vi /etc/apache2/sites-available/000-default.conf
+```
+![image](https://github.com/user-attachments/assets/2d0530f3-d8d1-48d1-b635-3da2706c6d45)
+
+```
+curl http://Web1
+```
+![image](https://github.com/user-attachments/assets/a8cdfc87-dc17-4e5a-9f38-2c0bcfdb7429)
 
 
-![image](https://github.com/user-attachments/assets/18482658-120c-433f-bdf1-b258b00a638f)
+```
+curl http://Web2
+```
+![image](https://github.com/user-attachments/assets/efbceb43-2ee5-4469-a9ea-f22b99b966c9)
+
+* ## Target Architecture
+* ### Now set up looks like this:
+<img width="715" alt="image-23" src="https://github.com/user-attachments/assets/cf5729ac-ea9d-46d4-b1af-b5c0c1c4864c">
+
+Conclusion
+The Apache Load Balancing solution successfully met the project's objectives by providing a scalable, reliable, and efficient way to manage traffic to our web application. The implementation not only improved performance but also prepared our infrastructure for future growth and increased user demand.
 
 
-![Uploading image.png…]()
+
+
 
 
 
