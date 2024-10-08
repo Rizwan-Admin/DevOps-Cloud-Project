@@ -161,6 +161,69 @@ ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
 
 
 
+Step 3 - Configure Jenkins to copy files to NFS server via SSH
+
+* Now we have our artifacts saved locally on Jenkins server, the next step is to copy them to our NFS server to /mnt/apps directory.
+* Jenkins is a highly extendable application and there are 1400+ plugins available. We will need a plugin that is called "Publish Over SSH".
+
+  1. Install "Publish Over SSH" plugin.
+* On main dashboard select "Manage Jenkins" and choose "Manage Plugins" menu item.
+* On "Available" tab search for "Publish Over SSH" plugin and install it
+![image](https://github.com/user-attachments/assets/50b53c8c-3a58-4942-bafb-8455c34243a4)
+
+
+2.Configure the job/project to copy artifacts over to NFS server.
+
+
+* On main dashboard select "Manage Jenkins" and choose "Configure System" menu item.
+
+![image](https://github.com/user-attachments/assets/d168c56a-4006-4fd2-92dd-ad5dbf06badd)
+
+* Save the configuration, open your Jenkins job/project configuration page and add another one "Post-build Action"
+
+
+![image](https://github.com/user-attachments/assets/176c340d-9e9e-4ed8-8a13-34f4d129813b)
+![image](https://github.com/user-attachments/assets/a3403774-1659-496d-8abb-3b180523f066)
+
+
+* Save this configuration and go ahead, change something in README.MD file in your GitHub Tooling repository.
+
+* ### If you find an error, change security settings of NFS Server
+```
+sudo chown -R nobody:nobody /mnt
+sudo chmod -R 777 /mnt
+
+```
+
+![image](https://github.com/user-attachments/assets/5061195d-22dd-4f6b-bb55-2679c5501c9f)
+
+
+* To make sure that the files in /mnt/apps have been udated - connect via SSH/Putty to your NFS server and check README.MD file
+```
+cat /mnt/apps/README.md
+```
+
+![image](https://github.com/user-attachments/assets/4dc161f1-7d85-44ec-a39f-c907646ed618)
+
+
+* If you see the changes you had previously made in your GitHub - the job works as expected.
+
+* ## Congratulations!
+You have just implemented your first Continous Integration solution using Jenkins CI. Watch out for advanced CI configurations in upcoming projects.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
