@@ -81,6 +81,95 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 1. Enable webhooks in your GitHub repository settings
 
+![image](https://github.com/user-attachments/assets/9ef80627-b12d-47d6-a276-b14f8b98f000)
+
+![image](https://github.com/user-attachments/assets/edd91028-3db1-4671-89f2-f940d85068c7)
+
+
+![image](https://github.com/user-attachments/assets/cdb551b9-6afd-4b63-b78b-390ce75bcad4)
+
+
+
+
+2. Go to Jenkins web console, click "New Item" and create a "Freestyle project"
+
+
+
+![image](https://github.com/user-attachments/assets/c82f4781-901f-4f0e-a8fa-16f720eb48e8)
+
+
+
+
+![image](https://github.com/user-attachments/assets/31c9a7d4-c467-4318-8ee5-27992fea84ff)
+
+
+
+To connect your GitHub repository, you will need to provide its URL, you can copy from the repository itself
+
+![image](https://github.com/user-attachments/assets/4a6a1a4d-21fc-4413-8bed-3af8777d01be)
+
+
+* Save the configuration and let us try to run the build. For now we can only do it manually. Click "Build Now" button, if you have configured everything correctly, the build will be successfull and you will see it under #1
+
+
+
+
+![image](https://github.com/user-attachments/assets/2d7e3e49-b29a-484d-81a6-415ea0686b5a)
+
+* You can open the build and check in "Console Output" if it has run successfully.
+
+
+* If so - congratulations! You have just made your very first Jenkins build!
+
+
+* But this build does not produce anything and it runs only when we trigger it manually. Let us fix it.
+
+
+3. Click "Configure" your job/project and add these two configurations
+
+* Configure triggering the job from GitHub webhook:
+
+![image](https://github.com/user-attachments/assets/3a0c8315-a03f-48b2-8051-3029fff13a74)
+
+
+
+
+* Configure "Post-build Actions" to archive all the files - files resulted from a build are called "artifacts".
+
+
+![image](https://github.com/user-attachments/assets/71b55987-4e13-4244-b13c-dc76b0cd9d48)
+
+* Now, go ahead and make some change in any file in your GitHub repository (e.g. README.MD file) and push the changes to the master branch.
+
+
+* You will see that a new build has been launched automatically (by webhook) and you can see its results - artifacts, saved on Jenkins server.
+
+![image](https://github.com/user-attachments/assets/d72c90c9-d16e-4e7e-a2fe-a3df8b6212fe)
+
+![image](https://github.com/user-attachments/assets/7e4f3115-17d4-4476-8cbc-286c034e0deb)
+
+
+You have now configured an automated Jenkins job that receives files from GitHub by webhook trigger (this method is considered as 'push' because the changes are being 'pushed' and files transfer is initiated by GitHub). There are also other methods: trigger one job (downstreadm) from another (upstream), poll GitHub periodically and others.
+
+
+*  By default, the artifacts are stored on Jenkins server locally
+```
+ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
+```
+![image](https://github.com/user-attachments/assets/67255df2-85ca-4889-b545-9619c90be377)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
