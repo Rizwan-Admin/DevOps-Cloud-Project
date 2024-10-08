@@ -208,13 +208,9 @@ cat /mnt/apps/README.md
 
 * If you see the changes you had previously made in your GitHub - the job works as expected.
 
-* ## Congratulations!
-You have just implemented your first Continous Integration solution using Jenkins CI. Watch out for advanced CI configurations in upcoming projects.
-
-
-
-
-
+* ## Conclusion!
+* Implemented Continous Integration solution using Jenkins CI. Watch out for advanced CI configurations in upcoming projects.
+* This project highlights the impact of automation on software delivery and sets a strong foundation for continued advancements in the development and deployment workflow.
 
 
 
