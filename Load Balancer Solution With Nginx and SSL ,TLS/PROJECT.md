@@ -149,10 +149,19 @@ sudo certbot --nginx
 ```
 ![image](https://github.com/user-attachments/assets/c40362fd-9606-416f-8dd2-52f9544f6b2f)
 
+* Test secured access to your web solution by trying to reach
+* https://<your-domain-name.com>
+
+```
+https://www.cloudtimes.online
+```
+
+![image](https://github.com/user-attachments/assets/1ddfd2ce-b28b-44d1-9681-e9e3821043d4)
 
 
 
 
+* ## TLS Certificcate
 
 ![image](https://github.com/user-attachments/assets/f29d01cc-852f-4dd6-8dde-049da1df79f0)
 
@@ -163,6 +172,8 @@ sudo certbot renew --dry-run
 
 ![image](https://github.com/user-attachments/assets/ae27bb09-bf19-4e6e-a60b-6b707e42973b)
 
+
+
 Best pracice is to have a scheduled job that to run renew command periodically. Let us configure a cronjob to run the command twice a day.
 
 * To do so, lets edit the crontab file with the following command:
@@ -170,20 +181,30 @@ Best pracice is to have a scheduled job that to run renew command periodically. 
 ```
 crontab -e
 ```
-* Test secured access to your web solution by trying to reach
-* https://<your-domain-name.com>
-
-```
-https://www.cloudtimes.online
-```
-
-![image](https://github.com/user-attachments/assets/1ddfd2ce-b28b-44d1-9681-e9e3821043d4)
 
 Add following line:
 ```
 * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
 ```
 ![image](https://github.com/user-attachments/assets/31f206fe-acfc-4d10-a834-1e0f3f368f89)
+
+
+
+* Note You can always change the interval of this cronjob if twice a day is too often by adjusting schedule expression.
+
+
+
+## Conclusion:
+
+Performance Improvement: The Nginx load balancer efficiently distributes traffic across multiple servers, enhancing response times and resource utilization.
+
+High Availability: Ensures continuous operation by providing fault tolerance and minimizing downtime.
+
+Security Enhancement: SSL/TLS encryption protects data in transit, ensuring user interactions are secure and boosting user trust.
+
+Scalability: Easily accommodates increased traffic as user demand grows, aligning with DevOps best practices.
+
+Robust Foundation: Establishes a secure and high-performing architecture, ready for future enhancements and scalability.
 
 
 
