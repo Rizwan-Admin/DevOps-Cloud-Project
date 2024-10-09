@@ -16,8 +16,9 @@
 
 * ### Project - 8 Load Balancer Solution With Apache
 
-* ### Project - 9 Tooling Website deployment automation with Continuous Integration. Introduction to Jenkins
+* ### Project - 9 Tooling Website deployment automation with Continuous Integration.
 
+* ## Project - 10 Load Balancer Solution With Nginx and SSL/TLS
 
 
 * #stegHub-DevOps & Engineering
