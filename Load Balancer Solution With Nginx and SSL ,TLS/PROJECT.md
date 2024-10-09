@@ -170,6 +170,15 @@ Best pracice is to have a scheduled job that to run renew command periodically. 
 ```
 crontab -e
 ```
+* Test secured access to your web solution by trying to reach
+* https://<your-domain-name.com>
+
+```
+https://www.cloudtimes.online
+```
+
+![image](https://github.com/user-attachments/assets/1ddfd2ce-b28b-44d1-9681-e9e3821043d4)
+
 Add following line:
 ```
 * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
