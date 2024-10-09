@@ -154,9 +154,27 @@ sudo certbot --nginx
 
 
 
+![image](https://github.com/user-attachments/assets/f29d01cc-852f-4dd6-8dde-049da1df79f0)
 
+You can test renewal command in dry-run mode
+```
+sudo certbot renew --dry-run
+```
 
+![image](https://github.com/user-attachments/assets/ae27bb09-bf19-4e6e-a60b-6b707e42973b)
 
+Best pracice is to have a scheduled job that to run renew command periodically. Let us configure a cronjob to run the command twice a day.
+
+* To do so, lets edit the crontab file with the following command:
+
+```
+crontab -e
+```
+Add following line:
+```
+* */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
+```
+![image](https://github.com/user-attachments/assets/31f206fe-acfc-4d10-a834-1e0f3f368f89)
 
 
 
